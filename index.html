@@ -274,6 +274,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .modal-close{background:rgba(255,255,255,0.05);border:1px solid var(--border3);color:var(--muted);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
 .modal-close:hover{background:rgba(240,68,90,0.15);color:var(--red);border-color:rgba(240,68,90,0.3);}
 .modal-subtitle{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.7;font-family:'Syne',sans-serif;}
+.modal-warning{display:flex;align-items:flex-start;gap:10px;background:rgba(255,160,0,0.08);border:1px solid rgba(255,160,0,0.3);border-radius:10px;padding:12px 14px;margin-bottom:18px;}
+.modal-warning svg{color:#f5a623;flex-shrink:0;margin-top:2px;}
+.modal-warning-text{font-size:12px;color:#f5c842;line-height:1.7;}
+.modal-warning-text strong{color:#fcd270;font-size:12.5px;}
 .modal-input-wrap{position:relative;}
 .modal-input{width:100%;background:var(--dark);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:15px 50px 15px 20px;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;outline:none;transition:all 0.22s;letter-spacing:0.1em;}
 .modal-input:focus{border-color:rgba(0,232,184,0.5);box-shadow:0 0 0 3px rgba(0,232,184,0.08);}
@@ -635,6 +639,44 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .lesson-item.bonus-lesson .lesson-n{background:linear-gradient(135deg,rgba(240,160,48,0.2),rgba(240,160,48,0.08));color:var(--gold);border-color:rgba(240,160,48,0.35);font-size:18px;}
 .lesson-item.bonus-lesson .lesson-label{color:var(--gold);font-weight:700;letter-spacing:0.1em;}
 .lesson-item.bonus-lesson .lesson-name{color:#fcd270;}
+
+/* USERS BADGE */
+.users-badge{display:flex;align-items:center;gap:7px;background:rgba(0,245,196,0.08);border:1px solid rgba(0,245,196,0.2);border-radius:30px;padding:5px 13px;font-size:11px;color:var(--teal);}
+.header-status-stack{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.crypto-header-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(0,245,196,0.12),rgba(0,245,196,0.06));color:var(--teal);border:1px solid rgba(0,245,196,0.28);border-radius:20px;padding:5px 13px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em;white-space:nowrap;}
+.crypto-header-btn:hover{background:rgba(0,245,196,0.2);border-color:rgba(0,245,196,0.5);transform:translateY(-1px);}
+
+/* CRYPTO NAV BUTTON */
+.crypto-nav-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,245,196,0.08);color:var(--teal);border:1px solid rgba(0,245,196,0.25);border-radius:10px;padding:9px 18px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.crypto-nav-btn:hover{background:rgba(0,245,196,0.15);transform:translateY(-2px);}
+
+/* CRYPTO PAGE */
+.crypto-update-row{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 18px;margin-bottom:20px;flex-wrap:wrap;}
+.crypto-update-label{font-size:11px;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
+.crypto-update-time{font-size:12px;color:var(--teal);flex:1;text-align:right;}
+.crypto-refresh-btn{display:flex;align-items:center;gap:6px;background:var(--surface3);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:7px 14px;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:all 0.2s;}
+.crypto-refresh-btn:hover{color:var(--teal);border-color:var(--border2);}
+.crypto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px;}
+.crypto-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 16px;transition:all 0.25s;position:relative;overflow:hidden;}
+.crypto-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.3);}
+.crypto-card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.crypto-logo{width:36px;height:36px;border-radius:50%;object-fit:cover;}
+.crypto-logo-fallback{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--surface3),var(--surface2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--teal);font-family:'Syne',sans-serif;}
+.crypto-name{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--text);}
+.crypto-symbol{font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+.crypto-prices-list{display:flex;flex-direction:column;gap:5px;margin-bottom:8px;}
+.crypto-price-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.crypto-price-row:last-child{border-bottom:none;}
+.crypto-currency-label{font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+.crypto-price-val{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--text);}
+.mga-row{background:rgba(0,245,196,0.04);border-radius:6px;padding:5px 6px !important;margin-top:2px;}
+.mga-val{color:var(--teal) !important;}
+.crypto-change{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;border-radius:6px;padding:3px 8px;}
+.crypto-change.up{background:rgba(31,214,114,0.12);color:var(--green);}
+.crypto-change.down{background:rgba(255,77,109,0.1);color:#ff4d6d;}
+.crypto-loading{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:16px;grid-column:1/-1;}
+.crypto-spinner{width:36px;height:36px;border:3px solid rgba(0,245,196,0.2);border-top-color:var(--teal);border-radius:50%;animation:spin 0.8s linear infinite;}
+.crypto-footer{text-align:center;font-size:11px;color:var(--muted2);display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;}
 @media(max-width:640px){
   .stats-grid{grid-template-columns:1fr 1fr;}
   .pay-page-grid{grid-template-columns:1fr;}
@@ -797,6 +839,10 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .modal-close{background:var(--surface3);border:none;color:var(--muted);width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
 .modal-close:hover{background:rgba(255,77,109,0.15);color:var(--red);}
 .modal-subtitle{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+.modal-warning{display:flex;align-items:flex-start;gap:10px;background:rgba(255,160,0,0.08);border:1px solid rgba(255,160,0,0.3);border-radius:10px;padding:12px 14px;margin-bottom:18px;}
+.modal-warning svg{color:#f5a623;flex-shrink:0;margin-top:2px;}
+.modal-warning-text{font-size:12px;color:#f5c842;line-height:1.7;}
+.modal-warning-text strong{color:#fcd270;font-size:12.5px;}
 .modal-input-wrap{position:relative;}
 .modal-input{width:100%;background:var(--dark);border:1px solid var(--border2);border-radius:11px;padding:14px 48px 14px 18px;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;outline:none;transition:all 0.2s;letter-spacing:0.08em;}
 .modal-input:focus{border-color:rgba(0,245,196,0.5);box-shadow:0 0 0 3px rgba(0,245,196,0.08);}
@@ -940,7 +986,17 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       Parrainage
     </button>
-    <div class="live-badge"><div class="live-dot"></div>En ligne</div>
+    <div class="header-status-stack">
+      <div class="live-badge"><div class="live-dot"></div>En ligne</div>
+      <div class="users-badge" id="users-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span id="users-count">...</span>
+      </div>
+      <button class="crypto-header-btn" onclick="showPage('crypto')">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        📈 Cours Crypto
+      </button>
+    </div>
   </div>
 </header>
 
@@ -1271,6 +1327,36 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   </div>
 </div>
 
+
+<!-- CRYPTO PRICES PAGE -->
+<div id="page-crypto" class="page">
+  <div class="courses-top">
+    <h2 class="courses-heading">📈 Cours des Cryptomonnaies</h2>
+    <button class="back-btn" onclick="showPage('courses')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour
+    </button>
+  </div>
+  <div class="crypto-update-row">
+    <span class="crypto-update-label">Mise à jour automatique</span>
+    <span class="crypto-update-time" id="crypto-update-time">—</span>
+    <button class="crypto-refresh-btn" onclick="loadCryptoPrices()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      Actualiser
+    </button>
+  </div>
+  <div class="crypto-grid" id="crypto-grid">
+    <div class="crypto-loading">
+      <div class="crypto-spinner"></div>
+      <div>Chargement des prix en temps réel…</div>
+    </div>
+  </div>
+  <div class="crypto-footer">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Prix en USD · Source : CoinGecko · Actualisé toutes les 60 secondes
+  </div>
+</div>
+
 <!-- GROUPE PAGE -->
 <div id="page-groupe" class="page">
   <div class="courses-top">
@@ -1392,6 +1478,13 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <p class="modal-subtitle">Saisissez votre code d'accès pour accéder au contenu exclusif de cette formation.</p>
+    <div class="modal-warning">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="modal-warning-text">
+        <strong>⚠️ Tandremo mizara ny code d'accès anao fa ho bloquer ny compte nao.</strong><br>
+        Tokana ny Code d'accès anao — Ka arovy tsara. Merci 🙏
+      </div>
+    </div>
     <div class="modal-input-wrap">
       <input class="modal-input" type="password" id="modal-input" placeholder="Code d'accès..." />
       <button class="show-pw" onclick="togglePw()">👁</button>
@@ -1417,12 +1510,14 @@ const lessonsDebutant = [
   {n:'08',label:'Leçon 8',name:'Règle de plateforme | Perte', link:'https://www.patreon.com/posts/157554989?utm_campaign=postshare_creator&utm_content=android_share'},
   {n:'09',label:'Leçon 9',name:'Solution', link:'https://www.patreon.com/posts/157557364?utm_campaign=postshare_creator&utm_content=android_share'},
   {n:'10',label:'Leçon 10',name:'Solde Ampiasaina', link:'https://www.patreon.com/posts/157554056?utm_campaign=postshare_creator&utm_content=android_share'},
+  {n:'11',label:'Leçon 11',name:'Leçon 11', links:['https://www.patreon.com/posts/158087594?utm_campaign=postshare_creator&utm_content=android_share','https://www.patreon.com/posts/158087901?utm_campaign=postshare_creator&utm_content=android_share']},
   {n:'⭐',label:'Leçon Bonus',name:'Bonus Exclusif', link:'https://www.patreon.com/posts/157784992?utm_campaign=postshare_creator&utm_content=android_share', bonus:true},
 ];
 const lessonsScript = [
   {n:'01',label:'Leçon 1',name:'Solde ampiasaina', link:'https://www.patreon.com/posts/solde-ampiasaina-157596236?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link'},
   {n:'02',label:'Leçon 2',name:'Réalité | Perte, Gain', link:'https://www.patreon.com/posts/realite-157596406?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link'},
   {n:'03',label:'Leçon 3',name:'Stratégie + Technique', links:['https://www.patreon.com/posts/cree-strategie-157597094?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link','https://www.patreon.com/posts/pratique-jazz-157597414?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link','https://www.patreon.com/posts/coffre-157609714?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link']},
+  {n:'05',label:'Leçon 5',name:'Strategy Jazz + Pratique', links:['https://www.patreon.com/posts/strategy-jazz-158085784?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link','https://www.patreon.com/posts/pratique-jazz-158086815?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link']},
   {n:'⭐',label:'Leçon Bonus',name:'Bonus Exclusif — Retrait', link:'https://www.patreon.com/posts/retrait-5-000-ar-157786446?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link', bonus:true},
 ];
 const payData = {
@@ -1552,9 +1647,14 @@ function updateProgress(courseKey, total) {
 
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
+  const target = document.getElementById('page-' + id);
+  if (target) target.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   if (id === 'parrainage') initParrQR();
+  if (id === 'crypto') {
+    loadCryptoPrices();
+    if (!cryptoInterval) cryptoInterval = setInterval(loadCryptoPrices, 60000);
+  }
 }
 
 let _targetCode = '', targetPage = '';
@@ -1883,6 +1983,81 @@ function copyBonusText(textId, confirmedId) {
     if (el) el.setAttribute('href', url);
   } catch(e) {}
 })();
+
+
+// ── CRYPTO PRICES ──
+const CRYPTOS = [
+  {id:'bitcoin',        symbol:'BTC', name:'Bitcoin',  icon:'₿'},
+  {id:'ethereum',       symbol:'ETH', name:'Ethereum', icon:'Ξ'},
+  {id:'tether',         symbol:'USDT',name:'Tether',   icon:'₮'},
+  {id:'binancecoin',    symbol:'BNB', name:'BNB',      icon:'B'},
+  {id:'solana',         symbol:'SOL', name:'Solana',   icon:'◎'},
+  {id:'tron',           symbol:'TRX', name:'TRON',     icon:'T'},
+  {id:'dogecoin',       symbol:'DOGE',name:'Dogecoin', icon:'Ð'},
+  {id:'litecoin',       symbol:'LTC', name:'Litecoin', icon:'Ł'},
+];
+
+let cryptoInterval = null;
+
+
+
+async function loadCryptoPrices() {
+  const grid = document.getElementById('crypto-grid');
+  if (!grid) return;
+  const ids = CRYPTOS.map(function(c){ return c.id; }).join(',');
+  const url = 'https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd,eur,mga&include_24hr_change=true';
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    grid.innerHTML = CRYPTOS.map(function(c) {
+      var info = data[c.id] || {};
+      var priceUsd = info.usd;
+      var priceEur = info.eur;
+      var priceMga = info.mga;
+      var pct      = info.usd_24h_change;
+      var fmtUsd = priceUsd ? (priceUsd >= 1 ? '$' + priceUsd.toLocaleString('en-US',{maximumFractionDigits:2}) : '$' + priceUsd.toFixed(6)) : '—';
+      var fmtEur = priceEur ? '€' + priceEur.toLocaleString('fr-FR',{maximumFractionDigits:2}) : '—';
+      var fmtMga = priceMga ? 'Ar ' + Math.round(priceMga).toLocaleString('fr-FR') : '—';
+      var pctStr = pct != null ? (pct >= 0 ? '▲ ' : '▼ ') + Math.abs(pct).toFixed(2) + '%' : '—';
+      var cls    = pct != null && pct >= 0 ? 'up' : 'down';
+      return '<div class="crypto-card">'
+        + '<div class="crypto-card-top">'
+        + '<div class="crypto-logo-fallback">' + c.icon + '</div>'
+        + '<div><div class="crypto-name">' + c.name + '</div><div class="crypto-symbol">' + c.symbol + '</div></div>'
+        + '</div>'
+        + '<div class="crypto-prices-list">'
+        + '<div class="crypto-price-row"><span class="crypto-currency-label">🇺🇸 USD</span><span class="crypto-price-val">' + fmtUsd + '</span></div>'
+        + '<div class="crypto-price-row"><span class="crypto-currency-label">🇪🇺 EUR</span><span class="crypto-price-val">' + fmtEur + '</span></div>'
+        + '<div class="crypto-price-row mga-row"><span class="crypto-currency-label">🇲🇬 MGA</span><span class="crypto-price-val mga-val">' + fmtMga + '</span></div>'
+        + '</div>'
+        + '<div class="crypto-change ' + cls + '">' + pctStr + ' (24h)</div>'
+        + '</div>';
+    }).join('');
+    var now = new Date();
+    var timeStr = now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    var el = document.getElementById('crypto-update-time');
+    if (el) el.textContent = timeStr;
+  } catch(e) {
+    grid.innerHTML = '<div class="crypto-loading" style="grid-column:1/-1"><div style="color:#ff4d6d;">⚠️ Impossible de charger les prix. Vérifiez votre connexion.</div></div>';
+  }
+}
+
+// ── USERS COUNTER ──
+function updateUsersCount() {
+  // Realistic online users simulation based on time of day
+  const hour = new Date().getHours();
+  const base = hour >= 8 && hour <= 22 ? 120 : 40;
+  const variation = Math.floor(Math.random() * 30) - 15;
+  const count = Math.max(12, base + variation);
+  const el = document.getElementById('users-count');
+  if (el) el.textContent = count + ' en ligne';
+}
+
+
+
+// Start users counter
+updateUsersCount();
+setInterval(updateUsersCount, 30000);
 
 function openGroup() {
   window.open('https://chat.whatsapp.com/JgejoTYVxWiAHw2Zc04nu4?mode=gi_t', '_blank');
