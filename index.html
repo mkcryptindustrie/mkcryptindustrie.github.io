@@ -701,6 +701,32 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .install-step-text strong{color:var(--teal);}
 .install-ios-share{font-size:16px;background:rgba(0,245,196,0.12);border:1px solid rgba(0,245,196,0.25);border-radius:6px;padding:2px 7px;}
 .install-modal-ok{width:100%;background:linear-gradient(135deg,var(--teal),var(--teal-dim));color:var(--dark);border:none;border-radius:12px;padding:15px;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(0,245,196,0.25);}
+/* MK SCRIPT V2 REQUEST CARD */
+.mkscript-request-card{margin-top:36px;background:linear-gradient(135deg,rgba(240,160,48,0.07),rgba(249,104,84,0.04));border:1px solid rgba(240,160,48,0.25);border-radius:20px;padding:28px;position:relative;overflow:hidden;}
+.mkscript-request-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.mkscript-request-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.mkscript-request-icon{font-size:32px;flex-shrink:0;}
+.mkscript-request-title{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:#fcd270;}
+.mkscript-request-sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:0.04em;}
+.mkscript-label{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.mkscript-email-wrap{margin-bottom:20px;}
+.mkscript-email-input{width:100%;background:var(--dark2);border:1px solid rgba(240,160,48,0.25);border-radius:11px;padding:14px 18px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;outline:none;transition:all 0.2s;letter-spacing:0.03em;}
+.mkscript-email-input:focus{border-color:rgba(240,160,48,0.5);box-shadow:0 0 0 3px rgba(240,160,48,0.08);}
+.mkscript-email-input::placeholder{color:var(--muted2);}
+.mkscript-msg-wrap{margin-bottom:22px;}
+.mkscript-msg-box{background:var(--dark);border:1px solid rgba(240,160,48,0.2);border-radius:11px;padding:16px 18px;margin-bottom:12px;}
+.mkscript-msg-text{font-family:'Syne',sans-serif;font-size:14px;color:#f0d080;line-height:1.75;font-style:italic;}
+.mkscript-copy-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:linear-gradient(135deg,var(--gold),#c87a00);color:#0a0500;border:none;border-radius:11px;padding:13px;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;cursor:pointer;transition:all 0.22s;box-shadow:0 4px 16px rgba(240,160,48,0.25);letter-spacing:0.02em;}
+.mkscript-copy-btn:hover{background:linear-gradient(135deg,#fcd270,var(--gold));transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,160,48,0.38);}
+.mkscript-copy-confirm{display:none;margin-top:12px;background:rgba(31,214,114,0.1);border:1px solid rgba(31,214,114,0.28);color:var(--green);border-radius:9px;padding:11px 16px;font-size:12px;}
+.mkscript-contact-label{font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;}
+.mkscript-contact-row{display:flex;flex-direction:column;gap:12px;}
+.mkscript-btn{display:flex;align-items:center;justify-content:center;gap:11px;border:none;border-radius:12px;padding:15px 20px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.22s;width:100%;}
+.mkscript-wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;box-shadow:0 4px 16px rgba(37,211,102,0.25);}
+.mkscript-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.38);}
+.mkscript-msg{background:linear-gradient(135deg,#1877f2,#0d5abf);color:#fff;box-shadow:0 4px 16px rgba(24,119,242,0.25);}
+.mkscript-msg:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(24,119,242,0.38);}
+
 @media(max-width:640px){
   .stats-grid{grid-template-columns:1fr 1fr;}
   .pay-page-grid{grid-template-columns:1fr;}
@@ -1231,6 +1257,55 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <span class="progress-pct" id="prog-script-pct">0 / 3</span>
   </div>
   <div class="lessons-list" id="lessons-script"></div>
+
+  <!-- REQUEST MK SCRIPT V2 APP -->
+  <div class="mkscript-request-card">
+    <div class="mkscript-request-header">
+      <div class="mkscript-request-icon">📩</div>
+      <div>
+        <div class="mkscript-request-title">Obtenir l'application Mk Script V2</div>
+        <div class="mkscript-request-sub">Remplissez votre email et envoyez votre demande</div>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="mkscript-email-wrap">
+      <label class="mkscript-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Votre adresse Email
+      </label>
+      <input type="email" id="mkscript-email" class="mkscript-email-input" placeholder="exemple@gmail.com"/>
+    </div>
+
+    <!-- Message to copy -->
+    <div class="mkscript-msg-wrap">
+      <label class="mkscript-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Message de demande
+      </label>
+      <div class="mkscript-msg-box">
+        <div class="mkscript-msg-text" id="mkscript-msg-text">Je suis un membre de la formation Mk Crypt Industrie niveau avancé et je demande l'obtention de l'application Mk Script V2. Merci 🙏</div>
+      </div>
+      <button class="mkscript-copy-btn" onclick="copyMkscriptMsg()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copier les informations
+      </button>
+      <div class="mkscript-copy-confirm" id="mkscript-copy-confirm">✓ Informations copiées ! Envoyez-les via WhatsApp ou Messenger.</div>
+    </div>
+
+    <!-- Contact buttons -->
+    <div class="mkscript-contact-label">Envoyer votre demande via :</div>
+    <div class="mkscript-contact-row">
+      <button class="mkscript-btn mkscript-wa" onclick="sendMkscriptWa()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.99.586 3.842 1.594 5.385L2.046 22l4.748-1.53A9.96 9.96 0 0 0 12 21.999c5.523 0 10-4.477 10-10 0-5.522-4.477-9.999-10-9.999z"/></svg>
+        Confirmer via WhatsApp
+      </button>
+      <button class="mkscript-btn mkscript-msg" onclick="window.open('https://www.facebook.com/share/1B5NV2NJeZ/','_blank')">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Confirmer via Messenger
+      </button>
+    </div>
+  </div>
 </div>
 
 
@@ -2199,6 +2274,36 @@ function dismissInstall() {
 
 function dismissInstallModal() {
   document.getElementById('install-modal-ios').style.display = 'none';
+}
+
+function copyMkscriptMsg() {
+  var email = document.getElementById('mkscript-email').value.trim();
+  var baseMsg = "Je suis un membre de la formation Mk Crypt Industrie niveau avance et je demande l'obtention de l'application Mk Script V2. Merci";
+  var text = email ? baseMsg + "\nEmail : " + email : baseMsg;
+  var confirm = document.getElementById('mkscript-copy-confirm');
+  var btn = document.querySelector('.mkscript-copy-btn');
+
+  function onSuccess() {
+    confirm.style.display = 'block';
+    var orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copie !';
+    btn.style.background = 'rgba(31,214,114,0.8)';
+    setTimeout(function() { btn.innerHTML = orig; btn.style.background = ''; confirm.style.display = 'none'; }, 3000);
+  }
+  function onFail() { alert(text); }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onSuccess).catch(function() { fallbackCopy(text, onSuccess, onFail); });
+  } else {
+    fallbackCopy(text, onSuccess, onFail);
+  }
+}
+
+function sendMkscriptWa() {
+  var email = document.getElementById('mkscript-email').value.trim();
+  var baseMsg = "Je suis un membre de la formation Mk Crypt Industrie niveau avance et je demande l'obtention de l'application Mk Script V2. Merci";
+  var msg = email ? baseMsg + "%0AEmail : " + email : baseMsg;
+  window.open('https://wa.me/261324120366?text=' + encodeURIComponent(msg), '_blank');
 }
 
 function openGroup() {
