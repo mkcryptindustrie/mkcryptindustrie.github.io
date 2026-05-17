@@ -716,6 +716,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .mkscript-msg-wrap{margin-bottom:22px;}
 .mkscript-msg-box{background:var(--dark);border:1px solid rgba(240,160,48,0.2);border-radius:11px;padding:16px 18px;margin-bottom:12px;}
 .mkscript-msg-text{font-family:'Syne',sans-serif;font-size:14px;color:#f0d080;line-height:1.75;font-style:italic;}
+.mkscript-fb-wrap{margin-bottom:16px;}
+.mkscript-fb-input{width:100%;background:var(--dark2);border:1px solid rgba(24,119,242,0.3);border-radius:11px;padding:13px 18px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;outline:none;transition:all 0.2s;}
+.mkscript-fb-input:focus{border-color:rgba(24,119,242,0.6);box-shadow:0 0 0 3px rgba(24,119,242,0.08);}
+.mkscript-fb-input::placeholder{color:var(--muted2);}
 .mkscript-copy-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:linear-gradient(135deg,var(--gold),#c87a00);color:#0a0500;border:none;border-radius:11px;padding:13px;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;cursor:pointer;transition:all 0.22s;box-shadow:0 4px 16px rgba(240,160,48,0.25);letter-spacing:0.02em;}
 .mkscript-copy-btn:hover{background:linear-gradient(135deg,#fcd270,var(--gold));transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,160,48,0.38);}
 .mkscript-copy-confirm{display:none;margin-top:12px;background:rgba(31,214,114,0.1);border:1px solid rgba(31,214,114,0.28);color:var(--green);border-radius:9px;padding:11px 16px;font-size:12px;}
@@ -727,6 +731,12 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .mkscript-msg{background:linear-gradient(135deg,#1877f2,#0d5abf);color:#fff;box-shadow:0 4px 16px rgba(24,119,242,0.25);}
 .mkscript-msg:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(24,119,242,0.38);}
 
+
+.pdd-fb-input-wrap{margin-bottom:20px;}
+.pdd-fb-label{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.pdd-fb-input{width:100%;background:var(--dark);border:1px solid rgba(24,119,242,0.3);border-radius:11px;padding:14px 18px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;outline:none;transition:all 0.2s;}
+.pdd-fb-input:focus{border-color:rgba(24,119,242,0.6);box-shadow:0 0 0 3px rgba(24,119,242,0.08);}
+.pdd-fb-input::placeholder{color:var(--muted2);}
 @media(max-width:640px){
   .stats-grid{grid-template-columns:1fr 1fr;}
   .pay-page-grid{grid-template-columns:1fr;}
@@ -1286,6 +1296,15 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="mkscript-msg-box">
         <div class="mkscript-msg-text" id="mkscript-msg-text">Je suis un membre de la formation Mk Crypt Industrie niveau avancé et je demande l'obtention de l'application Mk Script V2. Merci 🙏</div>
       </div>
+      <!-- Facebook username input -->
+      <div class="mkscript-fb-wrap">
+        <label class="mkscript-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Votre nom d'utilisateur Facebook
+        </label>
+        <input type="text" id="mkscript-fb-username" class="mkscript-fb-input" placeholder="Ex: Jean Dupont"/>
+      </div>
+
       <button class="mkscript-copy-btn" onclick="copyMkscriptMsg()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         Copier les informations
@@ -1378,6 +1397,15 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   </div>
 
   <div class="pay-note" style="margin-bottom:24px;" id="pdd-ref-note">⚠️ Référence : <strong id="pdd-ref-label">—</strong></div>
+
+  <!-- Facebook username input -->
+  <div class="pdd-fb-input-wrap">
+    <label class="pdd-fb-label">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      Votre nom d'utilisateur Facebook
+    </label>
+    <input type="text" id="pdd-fb-username" class="pdd-fb-input" placeholder="Ex: Jean Dupont"/>
+  </div>
 
   <!-- Action buttons -->
   <div class="pdd-actions">
@@ -1903,7 +1931,8 @@ function copyPayInfo() {
   const num  = document.getElementById('pdd-num').textContent.trim();
   const name = document.getElementById('pdd-name').textContent.trim();
   const ref  = document.getElementById("pdd-ref").textContent.trim();
-  const text = "Mode de paiement : " + svc + "\nNuméro : " + num + "\nNom : " + name + "\nRéférence : " + ref;
+  var fbUser = document.getElementById("pdd-fb-username") ? document.getElementById("pdd-fb-username").value.trim() : "";
+  const text = "Mode de paiement : " + svc + "\nNuméro : " + num + "\nNom : " + name + (ref ? "\nRéférence : " + ref : "") + (fbUser ? "\nFacebook : " + fbUser : "");
 
   function onSuccess() {
     const btn = document.querySelector('.pdd-copy');
@@ -2277,9 +2306,12 @@ function dismissInstallModal() {
 }
 
 function copyMkscriptMsg() {
-  var email = document.getElementById('mkscript-email').value.trim();
+  var email = document.getElementById('mkscript-email') ? document.getElementById('mkscript-email').value.trim() : '';
+  var fbName = document.getElementById('mkscript-fb-username') ? document.getElementById('mkscript-fb-username').value.trim() : '';
   var baseMsg = "Je suis un membre de la formation Mk Crypt Industrie niveau avance et je demande l'obtention de l'application Mk Script V2. Merci";
-  var text = email ? baseMsg + "\nEmail : " + email : baseMsg;
+  var text = baseMsg;
+  if (email) text += "\nEmail : " + email;
+  if (fbName) text += "\nFacebook : " + fbName;
   var confirm = document.getElementById('mkscript-copy-confirm');
   var btn = document.querySelector('.mkscript-copy-btn');
 
@@ -2300,9 +2332,12 @@ function copyMkscriptMsg() {
 }
 
 function sendMkscriptWa() {
-  var email = document.getElementById('mkscript-email').value.trim();
+  var email = document.getElementById('mkscript-email') ? document.getElementById('mkscript-email').value.trim() : '';
+  var fbName = document.getElementById('mkscript-fb-username') ? document.getElementById('mkscript-fb-username').value.trim() : '';
   var baseMsg = "Je suis un membre de la formation Mk Crypt Industrie niveau avance et je demande l'obtention de l'application Mk Script V2. Merci";
-  var msg = email ? baseMsg + "%0AEmail : " + email : baseMsg;
+  var msg = baseMsg;
+  if (email) msg += "\nEmail : " + email;
+  if (fbName) msg += "\nFacebook : " + fbName;
   window.open('https://wa.me/261324120366?text=' + encodeURIComponent(msg), '_blank');
 }
 
