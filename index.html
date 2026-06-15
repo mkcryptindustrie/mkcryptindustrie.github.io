@@ -23,6 +23,41 @@
   --green:#10c96a;--green2:rgba(16,201,106,0.1);--gold:#f0a030;--red:#f0445a;
   --radius-sm:8px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;
 }
+
+/* ── MODE CLAIR ── */
+html.light-mode-early body,
+body.light-mode {
+  --dark:#f0f5fa;--dark2:#e4ecf5;--surface:#ffffff;--surface2:#eef4fb;--surface3:#dde8f4;
+  --border:rgba(0,180,144,0.14);--border2:rgba(0,180,144,0.34);--border3:rgba(0,0,0,0.07);
+  --text:#0d2035;--text2:#254a6a;--muted:#5a7a96;--muted2:#9ab2c8;
+  --teal:#008a6e;--teal-dim:#00735c;--teal-faint:rgba(0,138,110,0.07);--teal-glow:rgba(0,138,110,0.18);
+  --green:#08924c;--gold:#b87010;--red:#c02040;
+}
+body.light-mode::before{background-image:linear-gradient(rgba(0,138,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,138,110,0.04) 1px,transparent 1px);}
+body.light-mode::after{background:radial-gradient(ellipse 80% 60% at 70% -20%,rgba(0,180,144,0.07) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at -10% 80%,rgba(59,130,246,0.04) 0%,transparent 60%);}
+body.light-mode .orb1{background:rgba(0,180,144,0.06);}
+body.light-mode .orb2{background:rgba(59,130,246,0.04);}
+body.light-mode .orb3{background:rgba(0,180,144,0.04);}
+/* Mode clair — champs de saisie */
+body.light-mode .bonus-field input,
+body.light-mode .bonus-field-icon,
+body.light-mode .modal-input {background:rgba(0,0,0,0.03);color:var(--text);}
+body.light-mode .bonus-field input::placeholder,
+body.light-mode .modal-input::placeholder {color:var(--muted2);}
+body.light-mode .bonus-user-info {background:var(--surface2);}
+body.light-mode .bonus-info-hint {background:rgba(184,112,16,0.06);border-color:rgba(184,112,16,0.2);}
+body.light-mode .splash-name {color:var(--teal);}
+/* Transition douce au changement de thème */
+body {transition:background 0.3s, color 0.3s;}
+
+/* Bouton toggle thème */
+.theme-toggle-btn{display:flex;align-items:center;gap:7px;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.theme-toggle-btn:hover{background:var(--teal-faint);border-color:var(--teal);transform:translateY(-1px);}
+.theme-toggle-btn .theme-icon{font-size:14px;line-height:1;transition:transform 0.4s;}
+.theme-toggle-btn:hover .theme-icon{transform:rotate(20deg);}
+body.light-mode .theme-toggle-btn .theme-icon{transform:rotate(0deg);}
+
+
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Mono',monospace;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
@@ -559,6 +594,41 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .bonus-contact-msg{background:rgba(0,153,255,0.1);color:#60b8ff;border:1px solid rgba(0,153,255,0.25);}
 .bonus-contact-msg:hover{background:rgba(0,153,255,0.2);transform:translateY(-2px);}
 
+/* SPLASH SCREEN */
+#splash-screen{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.6s ease,transform 0.6s ease;}
+#splash-screen.hide{opacity:0;pointer-events:none;transform:scale(1.04);}
+.splash-logo-wrap{width:110px;height:110px;border-radius:26px;overflow:hidden;box-shadow:0 12px 48px rgba(0,232,184,0.25),0 4px 18px rgba(0,0,0,0.55);animation:splashPop 0.65s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes splashPop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+.splash-name{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--teal);letter-spacing:0.04em;animation:splashFade 0.5s ease 0.25s both;}
+.splash-tagline{font-size:11px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;animation:splashFade 0.5s ease 0.4s both;}
+.splash-bar{width:120px;height:3px;background:rgba(0,232,184,0.15);border-radius:3px;overflow:hidden;margin-top:8px;animation:splashFade 0.4s ease 0.5s both;}
+.splash-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dim));border-radius:3px;animation:splashProgress 1s cubic-bezier(.4,0,.2,1) 0.5s both;}
+@keyframes splashProgress{from{width:0%;}to{width:100%;}}
+@keyframes splashFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* NAVIGATION FLUIDE */
+.page{display:none;animation:none;}
+.page.active{display:block;}
+.page.page-entering{animation:pageEnter 0.32s cubic-bezier(.25,.46,.45,.94) both;}
+.page.page-leaving{animation:pageLeave 0.22s cubic-bezier(.55,0,.1,1) both;}
+@keyframes pageEnter{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pageLeave{from{opacity:1;}to{opacity:0;}}
+.bonus-user-info{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 20px;margin-bottom:4px;}
+.bonus-user-info-title{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:16px;font-family:'DM Mono',monospace;}
+.bonus-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.bonus-field:last-child{margin-bottom:0;}
+.bonus-field label{font-size:11.5px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-family:'DM Mono',monospace;}
+.bonus-field input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;color:var(--text);font-family:'Syne',sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;width:100%;box-sizing:border-box;}
+.bonus-field input::placeholder{color:var(--muted2);}
+.bonus-field input:focus{border-color:rgba(0,232,184,0.45);background:rgba(0,232,184,0.04);}
+.bonus-field-icon{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 14px;transition:border-color 0.2s,background 0.2s;}
+.bonus-field-icon:focus-within{border-color:rgba(0,232,184,0.45);background:rgba(0,232,184,0.04);}
+.bonus-field-icon svg{flex-shrink:0;opacity:0.55;}
+.bonus-field-icon input{border:none;background:transparent;padding:12px 0;flex:1;}
+.bonus-field-icon input:focus{border:none;background:transparent;}
+.bonus-info-hint{font-size:11.5px;color:var(--muted2);margin-top:12px;line-height:1.5;padding:10px 12px;background:rgba(252,210,112,0.06);border:1px solid rgba(252,210,112,0.15);border-radius:var(--radius-sm);}
+.bonus-info-hint strong{color:#fcd270;}
+
 /* REFERRAL SECTION */
 .referral-section{
   margin-top:48px;
@@ -937,9 +1007,22 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* Applique le thème avant le rendu pour éviter le flash */
+(function(){try{if(localStorage.getItem('mk-theme')==='light')document.documentElement.classList.add('light-mode-early');}catch(e){}})();
+</script>
 </head>
 <body>
 
+<!-- SPLASH SCREEN -->
+<div id="splash-screen">
+  <div class="splash-logo-wrap">
+    <img src="data:image/png;base64,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" style="width:100%;height:100%;object-fit:cover;" alt="Mk Crypt Industrie"/>
+  </div>
+  <div class="splash-name">Mk Crypt Industrie</div>
+  <div class="splash-tagline">Académie Crypto — Gambling</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
 
 <!-- INSTALL BANNER -->
 <div id="install-banner" style="display:none;">
@@ -1019,10 +1102,16 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <span id="users-count">...</span>
       </div>
-      <button class="crypto-header-btn" onclick="showPage('crypto')">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        📈 Cours Crypto
-      </button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Changer le thème">
+          <span class="theme-icon" id="theme-icon">🌙</span>
+          <span id="theme-label">Mode Clair</span>
+        </button>
+        <button class="crypto-header-btn" onclick="showPage('crypto')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          📈 Cours Crypto
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -1667,6 +1756,48 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     </div>
   </div>
 
+  <!-- User info form -->
+  <div class="bonus-user-info">
+    <div class="bonus-user-info-title">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Vos informations
+    </div>
+
+    <div class="bonus-field">
+      <label>Nom d'utilisateur Facebook</label>
+      <div class="bonus-field-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#7daef8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <input type="text" id="bonus-fb-name" placeholder="ex: jean.dupont ou Jean Dupont" oninput="updateBonusMsg()" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="bonus-field">
+      <label>Numéro WhatsApp</label>
+      <div class="bonus-field-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.99.586 3.842 1.594 5.385L2.046 22l4.748-1.53A9.96 9.96 0 0 0 12 21.999c5.523 0 10-4.477 10-10 0-5.522-4.477-9.999-10-9.999z"/></svg>
+        <input type="tel" id="bonus-wa-number" placeholder="ex: +261 34 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="bonus-field">
+      <label>Numéro de téléphone</label>
+      <div class="bonus-field-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#60a5fa"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.88 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.78 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+        <input type="tel" id="bonus-phone-number" placeholder="ex: 034 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="bonus-field">
+      <label>Nom écrit sur la puce (SIM)</label>
+      <div class="bonus-field-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        <input type="text" id="bonus-sim-name" placeholder="ex: RAKOTO Jean" oninput="updateBonusMsg()" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="bonus-info-hint">⚠️ <strong>Important :</strong> Remplissez ces champs avant de copier le message. Vos informations seront incluses automatiquement pour permettre à l'admin de vous identifier et valider votre bonus.</div>
+  </div>
+
   <!-- Message to copy -->
   <div class="bonus-claim-card">
     <div class="bonus-claim-label">
@@ -2181,24 +2312,45 @@ function shareParr(platform) {
   }
 }
 
+var _bonusCurrentCourse = 'debutant';
+
 function showBonusPage(course) {
+  _bonusCurrentCourse = course;
   const amounts = { debutant: '1,5', script: '2,5' };
-  const msgs = {
-    debutant: "Je réclame mon bonus de 1,5$ pour avoir invité un membre à participer à la Formation Débutant à Expert de Mk Crypt Industrie. Merci de valider ma récompense.",
-    script:   "Je réclame mon bonus de 2,5$ pour avoir invité un membre à participer à la Formation Mk Script V2 de Mk Crypt Industrie. Merci de valider ma récompense."
-  };
   const titles = {
     debutant: "🎁 Bonus — Formation Débutant à Expert",
     script:   "🎁 Bonus — Formation Mk Script V2"
   };
   document.getElementById('bonus-page-heading').textContent = titles[course];
   document.getElementById('bonus-page-amount').innerHTML = amounts[course] + ' <span>$</span>';
-  document.getElementById('bonus-page-msg').textContent = msgs[course];
   document.getElementById('bonus-page-confirm').style.display = 'none';
   const btn = document.getElementById('bonus-page-copy-btn');
   btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copier le message';
   btn.style.background = '';
+  updateBonusMsg();
   showPage('bonus');
+}
+
+function updateBonusMsg() {
+  const fbName    = (document.getElementById('bonus-fb-name')      || {value:''}).value.trim();
+  const waNumber  = (document.getElementById('bonus-wa-number')    || {value:''}).value.trim();
+  const phoneNum  = (document.getElementById('bonus-phone-number') || {value:''}).value.trim();
+  const simName   = (document.getElementById('bonus-sim-name')     || {value:''}).value.trim();
+  const amounts   = { debutant: '1,5$', script: '2,5$' };
+  const courses   = { debutant: 'Formation Débutant à Expert', script: 'Formation Mk Script V2' };
+  const course    = _bonusCurrentCourse || 'debutant';
+  const amount    = amounts[course];
+  const courseName = courses[course];
+
+  let msg = 'Je réclame mon bonus de ' + amount + ' pour avoir invité un membre à participer à la ' + courseName + ' de Mk Crypt Industrie.';
+  if (fbName)   msg += '\n👤 Facebook : ' + fbName;
+  if (waNumber) msg += '\n📱 WhatsApp : ' + waNumber;
+  if (phoneNum) msg += '\n📞 Téléphone : ' + phoneNum;
+  if (simName)  msg += '\n💳 Nom sur la puce : ' + simName;
+  msg += '\nMerci de valider ma récompense.';
+
+  const el = document.getElementById('bonus-page-msg');
+  if (el) el.textContent = msg;
 }
 
 function copyBonusPageMsg() {
@@ -2224,6 +2376,39 @@ function copyBonusPageMsg() {
     fallbackCopy(text, onSuccess, onFail);
   }
 }
+
+/* ── THEME TOGGLE (Mode Clair / Sombre) ── */
+function toggleTheme() {
+  var body  = document.body;
+  var icon  = document.getElementById('theme-icon');
+  var label = document.getElementById('theme-label');
+  var isLight = body.classList.toggle('light-mode');
+  document.documentElement.classList.toggle('light-mode-early', isLight);
+
+  if (isLight) {
+    if (icon)  icon.textContent  = '☀️';
+    if (label) label.textContent = 'Mode Sombre';
+    try { localStorage.setItem('mk-theme', 'light'); } catch(e){}
+  } else {
+    if (icon)  icon.textContent  = '🌙';
+    if (label) label.textContent = 'Mode Clair';
+    try { localStorage.setItem('mk-theme', 'dark'); } catch(e){}
+  }
+}
+
+/* Restaure le thème sauvegardé au chargement */
+(function() {
+  var saved;
+  try { saved = localStorage.getItem('mk-theme'); } catch(e){}
+  if (saved === 'light') {
+    document.body.classList.add('light-mode');
+    document.documentElement.classList.add('light-mode-early');
+    var icon  = document.getElementById('theme-icon');
+    var label = document.getElementById('theme-label');
+    if (icon)  icon.textContent  = '☀️';
+    if (label) label.textContent = 'Mode Sombre';
+  }
+})();
 
 function toggleBonus(id) {
   const panel = document.getElementById(id);
@@ -2692,6 +2877,23 @@ function _fetchPaymentPrices() {
     .catch(function(){ _updatePriceBadges(); });
 }
 
+/* ── SPLASH SCREEN ── */
+(function() {
+  function hideSplash() {
+    var el = document.getElementById('splash-screen');
+    if (!el) return;
+    el.classList.add('hide');
+    setTimeout(function() { if (el) el.style.display = 'none'; }, 700);
+  }
+  // Masque le splash 1.8s après le chargement de la page
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(hideSplash, 1800);
+    });
+  } else {
+    setTimeout(hideSplash, 1800);
+  }
+})();
 
 </script>
 </body>
