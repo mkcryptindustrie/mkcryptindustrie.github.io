@@ -39,13 +39,8 @@ body.light-mode .orb1{background:rgba(0,180,144,0.06);}
 body.light-mode .orb2{background:rgba(59,130,246,0.04);}
 body.light-mode .orb3{background:rgba(0,180,144,0.04);}
 /* Mode clair — champs de saisie */
-body.light-mode .bonus-field input,
-body.light-mode .bonus-field-icon,
-body.light-mode .modal-input {background:rgba(0,0,0,0.03);color:var(--text);}
-body.light-mode .bonus-field input::placeholder,
-body.light-mode .modal-input::placeholder {color:var(--muted2);}
-body.light-mode .bonus-user-info {background:var(--surface2);}
-body.light-mode .bonus-info-hint {background:rgba(184,112,16,0.06);border-color:rgba(184,112,16,0.2);}
+body.light-mode .bonus-field-icon input{color:var(--text);}
+body.light-mode .bonus-info-hint{background:rgba(184,112,16,0.06);border-color:rgba(184,112,16,0.2);}
 body.light-mode .splash-name {color:var(--teal);}
 /* Transition douce au changement de thème */
 body {transition:background 0.3s, color 0.3s;}
@@ -565,10 +560,8 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .bonus-step-text{font-size:14px;color:var(--text);line-height:1.5;font-family:'Syne',sans-serif;}
 .bonus-step-text strong{color:var(--teal);}
 .bonus-step-arrow{text-align:center;font-size:20px;color:var(--muted2);padding:2px 0;}
-.bonus-claim-card{
-  background:var(--dark2);border:1px solid rgba(240,160,48,0.25);border-radius:var(--radius-xl);
-  padding:28px;margin-bottom:24px;
-}
+.bonus-claim-card{background:var(--dark2);border:1px solid rgba(240,160,48,0.25);border-radius:var(--radius-xl);padding:28px;margin-bottom:24px;display:none;animation:pageEnter 0.3s ease;}
+.bonus-claim-card.visible{display:block;}
 .bonus-claim-label{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
 .bonus-claim-msg{
   background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-md);
@@ -613,21 +606,55 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .page.page-leaving{animation:pageLeave 0.22s cubic-bezier(.55,0,.1,1) both;}
 @keyframes pageEnter{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pageLeave{from{opacity:1;}to{opacity:0;}}
-.bonus-user-info{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 20px;margin-bottom:4px;}
-.bonus-user-info-title{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:16px;font-family:'DM Mono',monospace;}
-.bonus-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+/* ── BONUS INFO BLOCKS ── */
+.bonus-info-wrapper{display:flex;flex-direction:column;gap:14px;margin-bottom:4px;}
+
+/* Bloc générique */
+.bonus-block{border-radius:var(--radius-xl);padding:20px 18px 18px;}
+
+/* Bloc 1 — Invité (bleu/violet) */
+.bonus-block-guest{
+  background:linear-gradient(135deg,rgba(125,174,248,0.07) 0%,rgba(99,102,241,0.05) 100%);
+  border:1px solid rgba(125,174,248,0.22);
+}
+/* Bloc 2 — Réception bonus (teal/vert) */
+.bonus-block-receive{
+  background:linear-gradient(135deg,rgba(0,232,184,0.07) 0%,rgba(74,222,128,0.04) 100%);
+  border:1px solid rgba(0,232,184,0.22);
+}
+
+/* Titre de bloc */
+.bonus-block-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:10.5px;font-family:'DM Mono',monospace;
+  letter-spacing:0.11em;text-transform:uppercase;font-weight:600;
+  margin-bottom:16px;padding-bottom:12px;
+}
+.bonus-block-guest .bonus-block-title{
+  color:#7daef8;border-bottom:1px solid rgba(125,174,248,0.18);
+}
+.bonus-block-receive .bonus-block-title{
+  color:var(--teal);border-bottom:1px solid rgba(0,232,184,0.18);
+}
+.bonus-block-title svg{flex-shrink:0;}
+
+/* Champ */
+.bonus-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
 .bonus-field:last-child{margin-bottom:0;}
-.bonus-field label{font-size:11.5px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-family:'DM Mono',monospace;}
-.bonus-field input{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;color:var(--text);font-family:'Syne',sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;width:100%;box-sizing:border-box;}
-.bonus-field input::placeholder{color:var(--muted2);}
-.bonus-field input:focus{border-color:rgba(0,232,184,0.45);background:rgba(0,232,184,0.04);}
+.bonus-field label{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-family:'DM Mono',monospace;}
 .bonus-field-icon{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 14px;transition:border-color 0.2s,background 0.2s;}
-.bonus-field-icon:focus-within{border-color:rgba(0,232,184,0.45);background:rgba(0,232,184,0.04);}
-.bonus-field-icon svg{flex-shrink:0;opacity:0.55;}
-.bonus-field-icon input{border:none;background:transparent;padding:12px 0;flex:1;}
-.bonus-field-icon input:focus{border:none;background:transparent;}
-.bonus-info-hint{font-size:11.5px;color:var(--muted2);margin-top:12px;line-height:1.5;padding:10px 12px;background:rgba(252,210,112,0.06);border:1px solid rgba(252,210,112,0.15);border-radius:var(--radius-sm);}
+.bonus-block-guest .bonus-field-icon:focus-within{border-color:rgba(125,174,248,0.5);background:rgba(125,174,248,0.05);}
+.bonus-block-receive .bonus-field-icon:focus-within{border-color:rgba(0,232,184,0.45);background:rgba(0,232,184,0.04);}
+.bonus-field-icon svg{flex-shrink:0;opacity:0.6;}
+.bonus-field-icon input{border:none;background:transparent;padding:12px 0;flex:1;font-size:14px;color:var(--text);font-family:'Syne',sans-serif;outline:none;}
+.bonus-field-icon input::placeholder{color:var(--muted2);}
+.bonus-info-hint{font-size:11.5px;color:var(--muted2);margin-top:2px;line-height:1.5;padding:10px 12px;background:rgba(252,210,112,0.06);border:1px solid rgba(252,210,112,0.15);border-radius:var(--radius-sm);}
 .bonus-info-hint strong{color:#fcd270;}
+body.light-mode .bonus-block-guest{background:linear-gradient(135deg,rgba(125,174,248,0.1) 0%,rgba(99,102,241,0.06) 100%);}
+body.light-mode .bonus-block-receive{background:linear-gradient(135deg,rgba(0,200,160,0.08) 0%,rgba(74,222,128,0.05) 100%);}
+body.light-mode .bonus-field-icon{background:rgba(0,0,0,0.03);}
+body.light-mode .bonus-field-icon input{color:var(--text);}
+body.light-mode .bonus-field-icon input::placeholder{color:var(--muted2);}
 
 /* REFERRAL SECTION */
 .referral-section{
@@ -1756,50 +1783,63 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     </div>
   </div>
 
-  <!-- User info form -->
-  <div class="bonus-user-info">
-    <div class="bonus-user-info-title">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Vos informations
-    </div>
+  <!-- User info form — 2 blocs distincts -->
+  <div class="bonus-info-wrapper">
 
-    <div class="bonus-field">
-      <label>Nom d'utilisateur Facebook</label>
-      <div class="bonus-field-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#7daef8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        <input type="text" id="bonus-fb-name" placeholder="ex: jean.dupont ou Jean Dupont" oninput="updateBonusMsg()" autocomplete="off" />
+    <!-- BLOC 1 : Informations de l'invité -->
+    <div class="bonus-block bonus-block-guest">
+      <div class="bonus-block-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Informations de l'invité
+      </div>
+
+      <div class="bonus-field">
+        <label>Nom d'utilisateur Facebook</label>
+        <div class="bonus-field-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#7daef8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <input type="text" id="bonus-fb-name" placeholder="ex: jean.dupont ou Jean Dupont" oninput="updateBonusMsg()" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="bonus-field">
+        <label>Numéro WhatsApp de l'invité</label>
+        <div class="bonus-field-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.99.586 3.842 1.594 5.385L2.046 22l4.748-1.53A9.96 9.96 0 0 0 12 21.999c5.523 0 10-4.477 10-10 0-5.522-4.477-9.999-10-9.999z"/></svg>
+          <input type="tel" id="bonus-wa-number" placeholder="ex: +261 34 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
+        </div>
       </div>
     </div>
 
-    <div class="bonus-field">
-      <label>Numéro WhatsApp</label>
-      <div class="bonus-field-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.99.586 3.842 1.594 5.385L2.046 22l4.748-1.53A9.96 9.96 0 0 0 12 21.999c5.523 0 10-4.477 10-10 0-5.522-4.477-9.999-10-9.999z"/></svg>
-        <input type="tel" id="bonus-wa-number" placeholder="ex: +261 34 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
+    <!-- BLOC 2 : Numéro pour recevoir le Bonus -->
+    <div class="bonus-block bonus-block-receive">
+      <div class="bonus-block-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M16 10h.01M12 10h.01M8 10h.01M16 14h.01M12 14h.01M8 14h.01"/></svg>
+        Numéro pour recevoir le Bonus
       </div>
+
+      <div class="bonus-field">
+        <label>Téléphone</label>
+        <div class="bonus-field-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#60a5fa"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.88 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.78 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+          <input type="tel" id="bonus-phone-number" placeholder="ex: 034 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="bonus-field">
+        <label>Puce SIM</label>
+        <div class="bonus-field-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          <input type="text" id="bonus-sim-name" placeholder="ex: RAKOTO Jean" oninput="updateBonusMsg()" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="bonus-info-hint">⚠️ <strong>Important :</strong> Remplissez ces champs avant de copier le message. Vos informations seront incluses automatiquement pour permettre à l'admin de valider votre bonus.</div>
     </div>
 
-    <div class="bonus-field">
-      <label>Numéro de téléphone</label>
-      <div class="bonus-field-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#60a5fa"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.88 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.78 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
-        <input type="tel" id="bonus-phone-number" placeholder="ex: 034 12 345 67" oninput="updateBonusMsg()" autocomplete="off" />
-      </div>
-    </div>
-
-    <div class="bonus-field">
-      <label>Nom écrit sur la puce (SIM)</label>
-      <div class="bonus-field-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
-        <input type="text" id="bonus-sim-name" placeholder="ex: RAKOTO Jean" oninput="updateBonusMsg()" autocomplete="off" />
-      </div>
-    </div>
-
-    <div class="bonus-info-hint">⚠️ <strong>Important :</strong> Remplissez ces champs avant de copier le message. Vos informations seront incluses automatiquement pour permettre à l'admin de vous identifier et valider votre bonus.</div>
-  </div>
+  </div><!-- /bonus-info-wrapper -->
 
   <!-- Message to copy -->
-  <div class="bonus-claim-card">
+  <div class="bonus-claim-card" id="bonus-claim-card">
     <div class="bonus-claim-label">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Message de réclamation
@@ -2342,11 +2382,19 @@ function updateBonusMsg() {
   const amount    = amounts[course];
   const courseName = courses[course];
 
+  // Afficher la carte uniquement si au moins un champ est rempli
+  const hasData = fbName || waNumber || phoneNum || simName;
+  const card = document.getElementById('bonus-claim-card');
+  if (card) {
+    if (hasData) { card.classList.add('visible'); }
+    else         { card.classList.remove('visible'); }
+  }
+
   let msg = 'Je réclame mon bonus de ' + amount + ' pour avoir invité un membre à participer à la ' + courseName + ' de Mk Crypt Industrie.';
   if (fbName)   msg += '\n👤 Facebook : ' + fbName;
-  if (waNumber) msg += '\n📱 WhatsApp : ' + waNumber;
+  if (waNumber) msg += '\n📱 WhatsApp de l\'invité : ' + waNumber;
   if (phoneNum) msg += '\n📞 Téléphone : ' + phoneNum;
-  if (simName)  msg += '\n💳 Nom sur la puce : ' + simName;
+  if (simName)  msg += '\n💳 Puce SIM : ' + simName;
   msg += '\nMerci de valider ma récompense.';
 
   const el = document.getElementById('bonus-page-msg');
